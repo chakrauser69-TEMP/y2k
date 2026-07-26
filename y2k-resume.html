@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>~*~ ALEX RIVERA'S HOMEPAGE ~*~</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --win-gray: #C0C0C0;
+    --win-gray-dark: #808080;
+    --win-gray-light: #ECECEC;
+    --title-blue-1: #000080;
+    --title-blue-2: #1084D0;
+    --hotpink: #FF2FB0;
+    --lime: #2CFF2C;
+    --cyan: #17E5E5;
+    --yellow: #FFEA00;
+    --purple-bg: #2200AA;
+    --ink: #000000;
+  }
+
+  *{ box-sizing: border-box; }
+  ::selection{ background: var(--yellow); color:#000; }
+
+  body{
+    margin:0;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--ink);
+    background-color: var(--purple-bg);
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1.4px),
+      radial-gradient(circle, rgba(44,255,44,0.5) 1px, transparent 1.4px);
+    background-size: 40px 40px, 65px 65px;
+    background-position: 0 0, 20px 30px;
+    cursor: default;
+  }
+
+  a{ color: var(--title-blue-2); }
+
+  /* ================= MARQUEE ================= */
+  .marquee-bar{
+    background: repeating-linear-gradient(45deg, var(--yellow), var(--yellow) 14px, #000 14px, #000 28px);
+    padding: 4px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 3px solid #000;
+  }
+  .marquee-bar .track{
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 18s linear infinite;
+    font-family: 'VT323', monospace;
+    font-size: 1.3rem;
+    background: var(--win-gray-light);
+    padding-top: 2px; padding-bottom: 2px;
+  }
+  .marquee-bar .track span{ padding: 0 14px; }
+  @keyframes scroll-left{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-100%); }
+  }
+
+  /* ================= LAYOUT WRAPPER ================= */
+  .page{
+    max-width: 920px;
+    margin: 24px auto;
+    padding: 0 16px 60px;
+  }
+
+  /* ================= WIN98 WINDOW COMPONENT ================= */
+  .window{
+    background: var(--win-gray);
+    border: 2px solid #fff;
+    border-right-color: #000;
+    border-bottom-color: #000;
+    box-shadow: 2px 2px 0 #000, inset 1px 1px 0 var(--win-gray-light);
+    margin-bottom: 28px;
+  }
+  .window-title{
+    background: linear-gradient(90deg, var(--title-blue-1), var(--title-blue-2));
+    color: #fff;
+    font-family: 'VT323', monospace;
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .window-title .win-icons{ display:flex; gap:4px; }
+  .window-title .win-icons span{
+    width: 16px; height:16px; background: var(--win-gray);
+    border: 1px solid #000; box-shadow: inset 1px 1px 0 #fff;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size: 0.7rem; color:#000; font-family: monospace; line-height:1;
+  }
+  .window-body{ padding: 22px 24px; background: var(--win-gray); }
+  .window-body.white{ background: #fff; margin: 3px; }
+
+  /* ================= NAV (browser toolbar look) ================= */
+  .toolbar{
+    background: var(--win-gray);
+    border-bottom: 2px solid #000;
+    padding: 8px 16px;
+    display:flex; align-items:center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  .toolbar .brand{
+    font-family: 'VT323', monospace; font-size: 1.4rem;
+    display:flex; align-items:center; gap:6px;
+  }
+  .toolbar .brand .dot{ color: var(--hotpink); }
+  .nav-buttons{ display:flex; gap: 8px; flex-wrap: wrap; }
+  .nav-btn{
+    font-family: 'VT323', monospace; font-size: 1rem;
+    background: var(--win-gray-light);
+    border: 2px solid #fff; border-right-color:#000; border-bottom-color:#000;
+    padding: 4px 12px; cursor: pointer; text-decoration:none; color:#000;
+  }
+  .nav-btn:active{ border-color:#000 #fff #fff #000; }
+
+  /* ================= HERO ================= */
+  .hero-window .window-body{
+    display:grid; grid-template-columns: 1fr auto; gap: 24px; align-items:center;
+    padding: 34px 28px;
+  }
+  .hero-title{
+    font-family: 'Bungee', cursive;
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    line-height: 1.05;
+    color: var(--hotpink);
+    -webkit-text-stroke: 2px #000;
+    text-shadow: 4px 4px 0 var(--cyan), 7px 7px 0 #000;
+    margin: 0 0 10px;
+  }
+  .hero-sub{
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    color: #000;
+    background: var(--yellow);
+    display:inline-block;
+    padding: 2px 10px;
+    border: 2px solid #000;
+    margin-bottom: 16px;
+  }
+  .blink{ animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity: 0; } }
+  .hero-desc{ font-size: 0.9rem; line-height: 1.7; max-width: 480px; }
+  .hero-badges{ display:flex; gap:10px; margin-top: 16px; flex-wrap: wrap; }
+  .badge-99{
+    font-family:'VT323'; font-size: 1rem; background:#fff; border: 2px solid #000;
+    padding: 5px 10px; box-shadow: 2px 2px 0 #000;
+  }
+  .hero-visual{
+    width: 150px; height: 150px; border-radius: 50%;
+    background: conic-gradient(var(--hotpink), var(--cyan), var(--yellow), var(--lime), var(--hotpink));
+    display:flex; align-items:center; justify-content:center;
+    animation: spin 6s linear infinite;
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0 #000;
+  }
+  .hero-visual .inner{
+    width: 100px; height:100px; border-radius:50%; background: #fff;
+    display:flex; align-items:center; justify-content:center; font-size: 2.6rem;
+    animation: spin-rev 6s linear infinite;
+  }
+  @keyframes spin{ 100%{ transform: rotate(360deg); } }
+  @keyframes spin-rev{ 100%{ transform: rotate(-360deg); } }
+
+  @media (max-width: 640px){
+    .hero-window .window-body{ grid-template-columns: 1fr; text-align:center; }
+    .hero-visual{ margin: 0 auto; }
+    .hero-badges{ justify-content:center; }
+  }
+
+  /* ================= SECTION HEADINGS ================= */
+  .sec-eyebrow{
+    font-family: 'VT323', monospace;
+    color: var(--title-blue-2);
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+  .sec-title{
+    font-family:'VT323', monospace;
+    font-size: 1.7rem;
+    color:#000;
+    display:flex; align-items:center; gap:8px;
+    margin-bottom: 14px;
+  }
+  .sec-title::before{ content:"◆"; color: var(--hotpink); }
+
+  /* ================= ABOUT ================= */
+  .about-grid{ display:grid; grid-template-columns: 1fr; gap: 14px; }
+  .stat-row{ display:flex; gap: 12px; flex-wrap:wrap; margin-top: 14px; }
+  .stat-chip{
+    font-family:'VT323'; font-size: 1.1rem;
+    background: var(--win-gray-light); border: 2px solid #000;
+    padding: 6px 14px; box-shadow: 2px 2px 0 #000;
+  }
+  .stat-chip b{ color: var(--hotpink); }
+
+  /* ================= SKILLS (desktop icons) ================= */
+  .icon-grid{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 18px;
+  }
+  .icon-item{ text-align:center; }
+  .icon-box{
+    width: 64px; height: 64px; margin: 0 auto 8px;
+    background: var(--win-gray-light);
+    border: 2px solid #fff; border-right-color:#000; border-bottom-color:#000;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 1.9rem;
+    box-shadow: 2px 2px 0 #000;
+  }
+  .icon-label{ font-family:'VT323'; font-size: 1rem; }
+  .icon-sub{ font-size: 0.65rem; color: var(--win-gray-dark); }
+
+  /* ================= EXPERIENCE TIMELINE ================= */
+  .timeline{ position:relative; padding-left: 26px; }
+  .timeline::before{
+    content:""; position:absolute; left: 6px; top:6px; bottom:6px; width: 4px;
+    background: repeating-linear-gradient(180deg, var(--hotpink), var(--hotpink) 8px, var(--cyan) 8px, var(--cyan) 16px);
+  }
+  .tl-item{ position:relative; margin-bottom: 26px; }
+  .tl-item:last-child{ margin-bottom:0; }
+  .tl-item::before{
+    content:"★"; position:absolute; left: -26px; top:-2px; color: var(--yellow);
+    -webkit-text-stroke: 1px #000; font-size: 1.2rem;
+  }
+  .tl-role{ font-family:'VT323'; font-size: 1.25rem; }
+  .tl-meta{ font-size: 0.75rem; color: var(--win-gray-dark); margin-bottom: 6px; }
+  .tl-desc{ font-size: 0.85rem; line-height: 1.6; }
+
+  /* ================= PROJECTS ================= */
+  .project-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+  .project-card{
+    background: var(--win-gray-light);
+    border: 2px solid #fff; border-right-color:#000; border-bottom-color:#000;
+    box-shadow: 3px 3px 0 #000;
+    padding: 14px;
+  }
+  .project-thumb{
+    height: 90px; display:flex; align-items:center; justify-content:center;
+    font-size: 2.2rem; margin-bottom: 10px;
+    background: repeating-linear-gradient(135deg, var(--cyan), var(--cyan) 10px, #fff 10px, #fff 20px);
+    border: 2px solid #000;
+  }
+  .project-card h4{ font-family:'VT323'; font-size: 1.15rem; margin: 0 0 4px; }
+  .project-card p{ font-size: 0.78rem; margin: 0 0 8px; line-height: 1.5; }
+  .project-tag{
+    font-family:'VT323'; font-size: 0.85rem; background:#fff; border:1px solid #000;
+    padding: 1px 8px; display:inline-block; margin: 0 4px 4px 0;
+  }
+
+  /* ================= GUESTBOOK ================= */
+  .guestbook-entry{
+    border: 2px dashed var(--title-blue-2);
+    padding: 12px 14px; margin-bottom: 14px; background: #fff;
+    font-size: 0.85rem;
+  }
+  .guestbook-entry:last-child{ margin-bottom: 0; }
+  .gb-head{ display:flex; justify-content:space-between; font-family:'VT323'; font-size:1.05rem; color: var(--title-blue-2); margin-bottom:4px;}
+  .gb-date{ color: var(--win-gray-dark); font-size: 0.7rem; font-family:'Space Mono'; }
+
+  /* ================= HIT COUNTER + CONTACT ================= */
+  .counter-row{
+    display:flex; align-items:center; gap: 14px; flex-wrap:wrap;
+    justify-content: center; margin-bottom: 6px;
+  }
+  .counter-digits{
+    display:flex; gap:2px; background:#000; padding: 6px 8px; border: 2px solid var(--yellow);
+  }
+  .counter-digits span{
+    font-family:'VT323'; font-size: 1.6rem; color: var(--lime);
+    background:#111; width: 22px; text-align:center;
+  }
+  .contact-buttons{ display:flex; gap: 12px; justify-content:center; flex-wrap:wrap; margin-top: 18px; }
+  .contact-btn{
+    font-family:'VT323'; font-size: 1.1rem;
+    background: var(--hotpink); color:#fff; border: 2px solid #000;
+    padding: 8px 20px; box-shadow: 3px 3px 0 #000; text-decoration:none;
+    display:inline-block;
+  }
+  .contact-btn:hover{ transform: translate(1px,1px); box-shadow: 2px 2px 0 #000; }
+
+  /* ================= FOOTER / WEBRING ================= */
+  .footer{
+    text-align:center; margin-top: 30px; color: #fff; font-family:'VT323'; font-size: 1rem;
+  }
+  .webring{
+    display:flex; justify-content:center; gap: 10px; margin: 14px 0; flex-wrap: wrap;
+  }
+  .webring .badge{
+    background:#000; color: var(--lime); border: 1px solid var(--lime);
+    padding: 4px 10px; font-size: 0.8rem;
+  }
+  .under-construction{
+    display:block; text-align:center; margin: 30px auto 10px;
+    font-family:'VT323'; font-size: 1.3rem; color:#000;
+    background: repeating-linear-gradient(45deg, var(--yellow), var(--yellow) 12px, #000 12px, #000 24px);
+    padding: 8px; border: 3px solid #000;
+    max-width: 400px;
+  }
+  .under-construction b{ background:#fff; padding: 2px 8px; }
+</style>
+</head>
+<body>
+
+<div class="marquee-bar">
+  <div class="track">
+    <span>🚧 UNDER CONSTRUCTION 🚧</span>
+    <span>THANKS FOR VISITING MY HOMEPAGE!!</span>
+    <span>★ BEST VIEWED AT 800x600 ★</span>
+    <span>SIGN MY GUESTBOOK BELOW 👇</span>
+    <span>LAST UPDATED: 07 / 26 / 2026</span>
+    <span>🚧 UNDER CONSTRUCTION 🚧</span>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="brand">💾 alex-rivera<span class="dot">.geo</span></div>
+  <div class="nav-buttons">
+    <a class="nav-btn" href="#about">☆ About</a>
+    <a class="nav-btn" href="#skills">☆ Skills</a>
+    <a class="nav-btn" href="#experience">☆ Work</a>
+    <a class="nav-btn" href="#projects">☆ Projects</a>
+    <a class="nav-btn" href="#guestbook">☆ Guestbook</a>
+    <a class="nav-btn" href="#contact">☆ Contact</a>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="window hero-window">
+    <div class="window-title">
+      <span>alex_rivera_homepage.exe</span>
+      <span class="win-icons"><span>_</span><span>□</span><span>x</span></span>
+    </div>
+    <div class="window-body">
+      <div>
+        <div class="hero-title">ALEX<br>RIVERA</div>
+        <div class="hero-sub">&gt; Frontend Developer <span class="blink">_</span></div>
+        <p class="hero-desc">Hi! Thanks for stopping by my corner of the web. I build fast, playful interfaces and I've been online since dial-up screeched through the phone line. Scroll down for my resume, projects, and guestbook!</p>
+        <div class="hero-badges">
+          <span class="badge-99">✔ Available for hire</span>
+          <span class="badge-99">📍 Remote / Hybrid</span>
+          <span class="badge-99">⭐ 5 yrs exp</span>
+        </div>
+      </div>
+      <div class="hero-visual"><div class="inner">😎</div></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="window" id="about">
+    <div class="window-title">
+      <span>C:\About_Me.txt</span>
+      <span class="win-icons"><span>_</span><span>□</span><span>x</span></span>
+    </div>
+    <div class="window-body white">
+      <div class="sec-eyebrow">// who am i</div>
+      <div class="sec-title">About Me</div>
+      <div class="about-grid">
+        <p>I'm a frontend developer who grew up making blinking-text GeoCities pages and never really stopped loving that chaos — I just learned to ship production code along with it. These days I build accessible, performant interfaces for startups, with a soft spot for nostalgic design details.</p>
+        <div class="stat-row">
+          <span class="stat-chip"><b>47</b> projects shipped</span>
+          <span class="stat-chip"><b>12</b> happy clients</span>
+          <span class="stat-chip"><b>5</b> years coding</span>
+          <span class="stat-chip"><b>∞</b> cups of coffee</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="window" id="skills">
+    <div class="window-title">
+      <span>My Computer - Skills</span>
+      <span class="win-icons"><span>_</span><span>□</span><span>x</span></span>
+    </div>
+    <div class="window-body white">
+      <div class="sec-eyebrow">// double-click to open</div>
+      <div class="sec-title">Skills</div>
+      <div class="icon-grid">
+        <div class="icon-item"><div class="icon-box">🟨</div><div class="icon-label">JavaScript</div><div class="icon-sub">Expert</div></div>
+        <div class="icon-item"><div class="icon-box">⚛️</div><div class="icon-label">React</div><div class="icon-sub">Expert</div></div>
+        <div class="icon-item"><div class="icon-box">🎨</div><div class="icon-label">CSS/SCSS</div><div class="icon-sub">Expert</div></div>
+        <div class="icon-item"><div class="icon-box">🟦</div><div class="icon-label">TypeScript</div><div class="icon-sub">Advanced</div></div>
+        <div class="icon-item"><div class="icon-box">🟩</div><div class="icon-label">Node.js</div><div class="icon-sub">Advanced</div></div>
+        <div class="icon-item"><div class="icon-box">📐</div><div class="icon-label">Figma</div><div class="icon-sub">Advanced</div></div>
+        <div class="icon-item"><div class="icon-box">🗄️</div><div class="icon-label">SQL</div><div class="icon-sub">Intermediate</div></div>
+        <div class="icon-item"><div class="icon-box">🔧</div><div class="icon-label">Git</div><div class="icon-sub">Expert</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="window" id="experience">
+    <div class="window-title">
+      <span>Work_History.doc</span>
+      <span class="win-icons"><span>_</span><span>□</span><span>x</span></span>
+    </div>
+    <div class="window-body white">
+      <div class="sec-eyebrow">// where i've been</div>
+      <div class="sec-title">Experience</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-role">Senior Frontend Developer — Pixel & Co.</div>
+          <div class="tl-meta">2023 — Present · Remote</div>
+          <div class="tl-desc">Lead a team of 4 rebuilding the design system used across 6 products; cut page load times by 40% and shipped a component library adopted company-wide.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-role">Frontend Developer — Nova Studio</div>
+          <div class="tl-meta">2021 — 2023 · San Francisco, CA</div>
+          <div class="tl-desc">Built and maintained marketing sites and dashboards for 10+ clients; introduced automated testing that reduced shipped bugs by half.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-role">Junior Web Developer — Byte Bakery</div>
+          <div class="tl-meta">2019 — 2021 · Austin, TX</div>
+          <div class="tl-desc">Started out fixing CSS bugs and ended up owning the checkout flow redesign that lifted conversion by 18%.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="window" id="projects">
+    <div class="window-title">
+      <span>Portfolio.zip</span>
+      <span class="win-icons"><span>_</span><span>□</span><span>x</span></span>
+    </div>
+    <div class="window-body white">
+      <div class="sec-eyebrow">// things i've made</div>
+      <div class="sec-title">Projects</div>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-thumb">🛒</div>
+          <h4>ShopWave</h4>
+          <p>A checkout experience redesign for a mid-size retailer, cutting cart abandonment by 22%.</p>
+          <span class="project-tag">React</span><span class="project-tag">Stripe</span>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb">📊</div>
+          <h4>DataDeck</h4>
+          <p>An internal analytics dashboard used daily by 200+ employees to track KPIs in real time.</p>
+          <span class="project-tag">TypeScript</span><span class="project-tag">D3.js</span>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb">🕹️</div>
+          <h4>RetroBoard</h4>
+          <p>A pixel-art kanban tool side project that hit #3 on a hobbyist tools launch board.</p>
+          <span class="project-tag">Vue</span><span class="project-tag">Canvas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUESTBOOK -->
+  <div class="window" id="guestbook">
+    <div class="window-title">
+      <span>Guestbook.exe</span>
+      <span class="win-icons"><span>_</span><span>□</span><span>x</span></span>
+    </div>
+    <div class="window-body white">
+      <div class="sec-eyebrow">// sign before you leave!</div>
+      <div class="sec-title">Guestbook</div>
+      <div class="guestbook-entry">
+        <div class="gb-head"><span>Priya_codes</span><span class="gb-date">07/18/2026</span></div>
+        <p>omg love the dial-up sounds easter egg on the homepage 😭 so good. also hire this person, worked with them at Nova, total pro.</p>
+      </div>
+      <div class="guestbook-entry">
+        <div class="gb-head"><span>webmaster_dan</span><span class="gb-date">07/09/2026</span></div>
+        <p>Found this through a webring, stayed for the portfolio. The RetroBoard project is genuinely fun to use!</p>
+      </div>
+      <div class="guestbook-entry">
+        <div class="gb-head"><span>hire_me_maybe</span><span class="gb-date">06/30/2026</span></div>
+        <p>Reached out about a contract gig, got a reply in an hour, super easy to work with. 10/10 would recommend.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="window" id="contact">
+    <div class="window-title">
+      <span>Contact_Me.exe</span>
+      <span class="win-icons"><span>_</span><span>□</span><span>x</span></span>
+    </div>
+    <div class="window-body white" style="text-align:center;">
+      <div class="sec-eyebrow" style="text-align:center;">// let's talk</div>
+      <div class="sec-title" style="justify-content:center;">Get In Touch</div>
+      <div class="counter-row">
+        <span style="font-family:'VT323'; font-size:1.1rem;">YOU ARE VISITOR #</span>
+        <div class="counter-digits">
+          <span>0</span><span>0</span><span>4</span><span>2</span><span>1</span><span>7</span>
+        </div>
+      </div>
+      <p style="font-size:0.85rem; max-width:420px; margin: 10px auto 0;">Open to full-time roles and freelance work. Fastest way to reach me is email — I usually reply within a day.</p>
+      <div class="contact-buttons">
+        <a class="contact-btn" href="#">✉ Email Me</a>
+        <a class="contact-btn" href="#">💼 LinkedIn</a>
+        <a class="contact-btn" href="#">🐙 GitHub</a>
+        <a class="contact-btn" href="#">📄 Download Resume</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="under-construction">🚧 PAGE ALWAYS <b>UNDER CONSTRUCTION</b> 🚧</div>
+
+  <div class="footer">
+    <div class="webring">
+      <span class="badge">◄ WEBRING ►</span>
+      <span class="badge">NETSCAPE NOW!</span>
+      <span class="badge">MADE WITH NOTEPAD</span>
+      <span class="badge">1024x768 OK</span>
+    </div>
+    <p>© 2026 Alex Rivera · This page has been online since forever · No cookies, only floppy disks</p>
+  </div>
+
+</div>
+
+</body>
+</html>
